@@ -77,7 +77,7 @@ class CategoryController extends Controller
                 default:
                     $render = redirect()
                                 ->route('category-web-index')
-                                ->with('warning', 'Obat tidak dapat dihapus. Pastikan tidak ada rumus yg menggunakan obat ini!');
+                                ->with('warning', 'error');
                     break;
             }
         }
