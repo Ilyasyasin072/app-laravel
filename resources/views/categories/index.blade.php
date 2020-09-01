@@ -12,6 +12,9 @@
 </div>
 <!-- /.page-header -->
 @include('categories._session')
+{{-- @include('categories.form') --}}
+<button class="btn btn-sm btn-primary" onclick="routeIndex();">Form</button>
+<div id="form"></div>
 <div class="row">
     <div class="col-xs-12">
     <div class="clearfix">
@@ -31,9 +34,7 @@
           </thead>
         </table>
       </div>
-       
     </div>
-    <!-- /.col -->
 </div>
 @endsection
 @push('js')
@@ -60,5 +61,23 @@
 					}
       });
     });
+
+    function routeIndex()
+    {
+      event.preventDefault();
+      const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
+
+      $.ajax({
+        url: '/web/category/create',
+        type: 'GET',
+        data : {
+          CSRF_TOKEN
+        },
+        success: function(data){
+          // console.log(data);
+          $('#form').html(data);
+        }
+      })
+    }
   </script>
 @endpush

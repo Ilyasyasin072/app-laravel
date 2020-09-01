@@ -7,9 +7,13 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    // json
-
     protected $category;
+
+    public function create()
+    {
+        $menus = 'Form Category';
+        return view('categories.form', ['menus' => $menus])->render();
+    }
     public function index_data()
     {
         $category = Category::ForDatatable();
@@ -66,18 +70,17 @@ class CategoryController extends Controller
                 case 'html':
                 default:
                     $render = redirect()
-                                ->route('category-web-index')
-                                ->with('success', 'Category telah dihapus!');
+                        ->route('category-web-index')
+                        ->with('success', 'Category telah dihapus!');
                     break;
             }
-        }
-        else {
+        } else {
             switch ($format) {
                 case 'html':
                 default:
                     $render = redirect()
-                                ->route('category-web-index')
-                                ->with('warning', 'error');
+                        ->route('category-web-index')
+                        ->with('warning', 'error');
                     break;
             }
         }
